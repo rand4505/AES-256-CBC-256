@@ -98,7 +98,15 @@ namespace AESEncryptAndDecrypt
         private string RetString(GetString dlg) {
             string Retme = "";
             if (dlg.ShowDialog() == DialogResult.OK) {
-                Retme = dlg.Password;
+                if (dlg.Password.Length > 16)
+                {
+                    Retme = dlg.Password;
+                }
+                else {
+                    MessageBox.Show("Password must be longer than 16 chars");
+                    dlg.ClearPass();
+                    Retme = RetString(dlg);
+                }
             }
             return Retme;
         }
