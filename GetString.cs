@@ -13,6 +13,7 @@ namespace AESEncryptAndDecrypt
     {
         private string _Password;
         public string Password { get { return _Password; } set { _Password = value; } }
+        public void ClearPass() { Password = "".ToString(); textBox1.Text = "".ToString(); }
 
         public GetString()
         {
