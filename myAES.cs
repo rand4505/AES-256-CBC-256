@@ -45,7 +45,8 @@ namespace AESEncryptAndDecrypt
                 return EncryptFile(File, File + "(encrypted)", Password);
             }
             if (Mode == "Decrypt") { 
-                return DecryptFile(File, File + "(decrypted)", Password);
+                return DecryptFile(File, File.Contains("(encrypted)") ? 
+                                   File.TrimEnd("(encrypted)".ToArray()) : File+"(decrypted)", Password);
             }
             return false;
         }
