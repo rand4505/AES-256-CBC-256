@@ -46,6 +46,11 @@ namespace AESEncryptAndDecrypt
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.FileMode_checkBox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.SeedBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.AlgoBox = new System.Windows.Forms.ComboBox();
+            this.BCryptBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,10 +59,10 @@ namespace AESEncryptAndDecrypt
             this.RTB.BackColor = System.Drawing.SystemColors.WindowText;
             this.RTB.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RTB.ForeColor = System.Drawing.SystemColors.Menu;
-            this.RTB.Location = new System.Drawing.Point(5, 156);
+            this.RTB.Location = new System.Drawing.Point(5, 181);
             this.RTB.Name = "RTB";
             this.RTB.ReadOnly = true;
-            this.RTB.Size = new System.Drawing.Size(1010, 284);
+            this.RTB.Size = new System.Drawing.Size(1010, 259);
             this.RTB.TabIndex = 4;
             this.RTB.Text = "";
             // 
@@ -140,7 +145,7 @@ namespace AESEncryptAndDecrypt
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(2, 34);
+            this.label4.Location = new System.Drawing.Point(2, 37);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 13);
             this.label4.TabIndex = 9;
@@ -198,7 +203,7 @@ namespace AESEncryptAndDecrypt
             this.groupBox1.Controls.Add(this.EncryptButton);
             this.groupBox1.Controls.Add(this.InputBox);
             this.groupBox1.Controls.Add(this.InputLabel);
-            this.groupBox1.Location = new System.Drawing.Point(5, 61);
+            this.groupBox1.Location = new System.Drawing.Point(5, 80);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1010, 95);
             this.groupBox1.TabIndex = 14;
@@ -225,11 +230,67 @@ namespace AESEncryptAndDecrypt
             this.label1.TabIndex = 15;
             this.label1.Text = "Randomize Array Values";
             // 
+            // SeedBox
+            // 
+            this.SeedBox.Location = new System.Drawing.Point(90, 61);
+            this.SeedBox.Name = "SeedBox";
+            this.SeedBox.Size = new System.Drawing.Size(199, 20);
+            this.SeedBox.TabIndex = 16;
+            this.SeedBox.TextChanged += new System.EventHandler(this.SeedBox_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 64);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 13);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Integer Seed";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(322, 64);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(103, 13);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Encryption Algorithm";
+            // 
+            // AlgoBox
+            // 
+            this.AlgoBox.FormattingEnabled = true;
+            this.AlgoBox.Items.AddRange(new object[] {
+            "256-AES-256-CBC",
+            "256-AES-128-CBC(Nist Rijndael)",
+            "256-AES-128-CFB",
+            "128-AES-128-CBC"});
+            this.AlgoBox.Location = new System.Drawing.Point(432, 62);
+            this.AlgoBox.Name = "AlgoBox";
+            this.AlgoBox.Size = new System.Drawing.Size(195, 21);
+            this.AlgoBox.TabIndex = 19;
+            this.AlgoBox.SelectedIndexChanged += new System.EventHandler(this.AlgoBox_SelectedIndexChanged);
+            // 
+            // BCryptBox1
+            // 
+            this.BCryptBox1.AutoSize = true;
+            this.BCryptBox1.Location = new System.Drawing.Point(646, 64);
+            this.BCryptBox1.Name = "BCryptBox1";
+            this.BCryptBox1.Size = new System.Drawing.Size(254, 17);
+            this.BCryptBox1.TabIndex = 21;
+            this.BCryptBox1.Text = "Use Bcrypt Hash instead of random key/vector?";
+            this.BCryptBox1.UseVisualStyleBackColor = true;
+            this.BCryptBox1.CheckedChanged += new System.EventHandler(this.BCryptBox1_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1018, 442);
+            this.Controls.Add(this.BCryptBox1);
+            this.Controls.Add(this.AlgoBox);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.SeedBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.randarrays);
@@ -243,7 +304,7 @@ namespace AESEncryptAndDecrypt
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AES-256-CBC-256 Crypto by John L. Grubbs";
+            this.Text = ".Net Crypto by John L. Grubbs";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -270,5 +331,10 @@ namespace AESEncryptAndDecrypt
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox FileMode_checkBox;
+        private System.Windows.Forms.TextBox SeedBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox AlgoBox;
+        private System.Windows.Forms.CheckBox BCryptBox1;
     }
 }
