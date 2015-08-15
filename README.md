@@ -7,4 +7,4 @@ Questions: john@johnlgrubbs.net
 
 Compiled version can be found at http://johnlgrubbs.net/AESDeploy(wFiles).zip
 
-Registerd with BIS: ERN R105476
+Registered with BIS: ERN R105476
